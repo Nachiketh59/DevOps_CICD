@@ -64,8 +64,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Deploy site
+      - name: Show repo and docs contents
+        run: |
+          echo "Repository root contents:"
+          ls -la
+          echo "docs directory contents:"
+          ls -la ./docs
+
+      - name: Deploy site to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+          publish_branch: gh-pages
+          allow_empty_commit: true
